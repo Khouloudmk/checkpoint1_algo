@@ -1,0 +1,31 @@
+ALGORITHM checkpoint_1 
+VAR 
+    L, W, V,i: INTEGER;
+    CH: CHAR;
+    S: STRING;
+    check_word: BOOLEAN; // check if we're inside a word
+BEGIN
+    L := 0; // Counter for the length of the sentence
+    W := 0; // Counter for the number of words
+    V := 0; // Counter for the number of vowels
+    check_word := false;
+FOR i FROM 1 TO S.length DO 
+    CH := S[i - 1] // Get the character at the current position
+    IF (CH = ".") THEN 
+            BREAK; 
+    END_IF 
+    L := L + 1;
+    IF (CH IN {"a", "e", "i", "o", "u", "A", "E", "I", "O", "U"}) THEN 
+        V := V + 1;
+    END_IF
+    IF (CH = " ") THEN 
+        check_word := false;
+    ELSE 
+        IF (check_word = false) THEN 
+            W := W + 1;
+            check_word := true;
+        END_IF
+    END_IF 
+END_FOR 
+    RETURN (L, W, V)
+END
